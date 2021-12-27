@@ -28,7 +28,7 @@ export default function HotelCard({ child }) {
             <div className="hotel-card" key={data.id}>
               <h2>{data.name}</h2>
               <p>{data.city}</p>
-              <p>{data.rooms} rooms available</p>
+              <p>{data.rooms <= 0 ? 0 : data.rooms} rooms available</p>
               <p>£{data.price}</p>
               <button
                 onClick={() =>
