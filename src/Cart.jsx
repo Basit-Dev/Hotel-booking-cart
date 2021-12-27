@@ -4,22 +4,26 @@ import HotelCard from "./Hotelcard";
 export default function Cart() {
   const [price, setPrice] = useState(0);
   const [qty, setQty] = useState(0);
-  const [room, setRoom] = useState();
+  const [room, setRoom] = useState(2);
   const [row, setRow] = useState([]);
 
   const addItem = function (hotelData) {
     if (hotelData[3] > 0) {
       setPrice(hotelData[2] + price);
       setQty(hotelData[1] + qty);
-      setRoom(hotelData[3] - 2);
+      setRoom(hotelData[3] - room);
       setRow(row);
       row.push(hotelData);
-      console.log(room);
     } else {
       alert("There are no rooms left, please choose another hotel.");
     }
   };
-
+  const resetBtn = function (hotelData) {
+    setRoom(hotelData);
+    setQty(0);
+    setPrice(0);
+    setRow([]);
+  };
   return (
     <>
       <div className="cart-container">
@@ -50,6 +54,7 @@ export default function Cart() {
             <th>£{price}</th>
           </tbody>
         </table>
+        <button onClick={() => resetBtn()}>Reset</button>
       </div>
     </>
   );

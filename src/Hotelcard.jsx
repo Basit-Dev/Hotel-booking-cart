@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import hotelData from "./hotelData";
 
 export default function HotelCard({ child }) {
   const [room, setRoom] = useState(hotelData);
   const [sold, setSold] = useState("Sold Out!");
 
-  const decrementQty = function (roomId, roomLeft) {
+  const decrementQty = function (roomId) {
     room.map((data) => {
       if (roomId === data.id) {
         if (data.rooms === 1) {
@@ -20,6 +20,14 @@ export default function HotelCard({ child }) {
       return true;
     });
   };
+
+  const g = function () {
+    window.location.reload(true);
+  };
+
+  // useEffect(() => {
+  //   setRoom(room);
+  // }, [room]);
 
   return (
     <>
@@ -48,6 +56,7 @@ export default function HotelCard({ child }) {
           );
         })}
       </div>
+      <button onClick={() => g()}>remove</button>
     </>
   );
 }
