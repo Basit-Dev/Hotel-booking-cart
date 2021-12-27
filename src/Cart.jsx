@@ -16,7 +16,7 @@ export default function Cart() {
       row.push(hotelData);
       console.log(room);
     } else {
-      console.log("NO ROOM,S" + hotelData);
+      alert("There are no rooms left, please choose another hotel.");
     }
   };
 

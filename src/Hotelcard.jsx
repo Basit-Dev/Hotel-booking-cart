@@ -3,12 +3,14 @@ import hotelData from "./hotelData";
 
 export default function HotelCard({ child }) {
   const [room, setRoom] = useState(hotelData);
+  const [sold, setSold] = useState();
 
   const decrementQty = function (roomId, roomLeft) {
     room.map((data) => {
       if (roomId === data.id) {
-        if (data.rooms <= 0) {
+        if (data.rooms === 1) {
           data.rooms = 0;
+          setSold((data.sold = "Sold Out!"));
         } else {
           setRoom(data.rooms--);
         }
@@ -38,6 +40,9 @@ export default function HotelCard({ child }) {
               >
                 Add to cart
               </button>
+              <p style={{ color: "red", fontWeight: "bold", fontSize: "20px" }}>
+                {data.sold}
+              </p>
             </div>
           );
         })}
